@@ -17,13 +17,13 @@ class ShoeContainer(context: Context) : LinearLayout(context) {
     private val binding: ShoeItemBinding =
         DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.shoe_item, this, false)
 
-    fun loadShoes(shoe:Shoe){
+    fun loadShoes(shoe: Shoe) {
         binding.apply {
             addView(this.root)
             shoeNameEdt.text = shoe.name
-            showSizeEdt.text =shoe.size.toString()
+            showSizeEdt.text = shoe.size.toInt().toString()
             descriptionEdt.text = shoe.description
-            comapnyEdt.text = shoe.company
+            companyEdt.text = shoe.company
         }
     }
 

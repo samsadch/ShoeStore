@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="@string/company"
-                app:layout_constraintBaseline_toBaselineOf="@+id/comapny_edt"
+                app:layout_constraintBaseline_toBaselineOf="@+id/company_edt"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
@@ -68,7 +68,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/comapny_edt"
+                android:id="@+id/company_edt"
                 style="@style/TextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -83,9 +83,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="@+id/comapny_edt"
-                app:layout_constraintStart_toStartOf="@+id/comapny_edt"
-                app:layout_constraintTop_toBottomOf="@+id/comapny_edt" />
+                app:layout_constraintEnd_toEndOf="@+id/company_edt"
+                app:layout_constraintStart_toStartOf="@+id/company_edt"
+                app:layout_constraintTop_toBottomOf="@+id/company_edt" />
 
             <TextView
                 android:id="@+id/description_edt"

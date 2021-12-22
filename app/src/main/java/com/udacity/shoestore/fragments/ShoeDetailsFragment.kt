@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.ShoeViewModel
 import com.udacity.shoestore.databinding.FragmentShoeDetailsBinding
-import com.udacity.shoestore.models.Shoe
 
 /**
  * @Author: Samsad Chalil Valappil
@@ -30,21 +29,22 @@ class ShoeDetailsFragment : Fragment() {
             R.layout.fragment_shoe_details, container, false
         )
         viewModel = ViewModelProvider(requireActivity()).get(ShoeViewModel::class.java)
+        binding.shoeViewModel = viewModel
+
+        viewModel.cancelEvent.observe(viewLifecycleOwner, {
+            if (it) {
+                findNavController().popBackStack()
+                viewModel.onCancelPressed(false)
+            }
+        })
         binding.apply {
             saveButton.setOnClickListener {
                 val shoeName = shoeNameEdt.text.toString()
-                val shoeCompany = comapnyEdt.text.toString()
+                val shoeCompany = companyEdt.text.toString()
                 val shoeSize = showSizeEdt.text.toString()
                 val description = descriptionEdt.text.toString()
                 if (shoeName.isNotEmpty() && shoeCompany.isNotEmpty() && shoeSize.isNotEmpty() && description.isNotEmpty()) {
-                    val shoe = Shoe(
-                        name = shoeName,
-                        size = shoeSize.toDouble(),
-                        company = shoeCompany,
-                        description = description
-                    )
-                    viewModel.setShoe(shoe)
-                    findNavController().popBackStack()
+                    viewModel.addShoe(shoeName, shoeCompany, shoeSize, description)
                 } else {
                     Toast.makeText(
                         requireContext(),
@@ -52,10 +52,6 @@ class ShoeDetailsFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            }
-
-            cancelButton.setOnClickListener {
-                findNavController().popBackStack()
             }
         }
         return binding.root

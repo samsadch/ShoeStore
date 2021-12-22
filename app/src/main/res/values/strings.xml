@@ -22,4 +22,5 @@
     <string name="size">Size</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
+    <string name="enter_description">Enter Description</string>
 </resources>
