@@ -10,6 +10,7 @@
         app:cardCornerRadius="@dimen/small_margin"
         app:contentPadding="@dimen/small_margin">
 
+        <!--ConstraintLayout used because views have to align in complex way-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
