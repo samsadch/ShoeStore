@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">ShoeStore</string>
+    <string name="prompt_username">Enter Username</string>
+    <string name="prompt_password">Enter Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="or">or</string>
+    <string name="error_login">Please enter all the fields correctly</string>
+    <string name="title_text">Welcome to Shoe Listing application</string>
+    <string name="sub_title_text">Shop the exciting pairs of Shoes from the most famous shoe listing application.</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="logout">Logout</string>
+    <string name="instruction_title">Instructions for using the Shoe App</string>
+    <string name="instructions">Please select the items from the list then you can add to you cart using add to card button. Your orders will be delivered in 24 hours from the date of delivery</string>
+    <string name="take_me_to_shoes">Take Me to Shoes</string>
+    <string name="list_title">Available Shpes</string>
+    <string name="description">Description :</string>
+    <string name="shoe_size">Shoe Size :</string>
+    <string name="company">Company :</string>
+    <string name="shoe_name">Shoe Name :</string>
+    <string name="size">Size</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
 </resources>
