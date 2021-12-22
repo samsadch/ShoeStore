@@ -12,7 +12,6 @@ import com.udacity.shoestore.R
 import com.udacity.shoestore.ShoeContainer
 import com.udacity.shoestore.ShoeViewModel
 import com.udacity.shoestore.databinding.FragmentShoeListingBinding
-import com.udacity.shoestore.models.Shoe
 
 /**
  * @Author: Samsad Chalil Valappil
@@ -34,21 +33,15 @@ class ShoeListingFragment : Fragment() {
         }
 
         viewModel = ViewModelProvider(requireActivity()).get(ShoeViewModel::class.java)
-        val shoe: Shoe? = ShoeListingFragmentArgs.fromBundle(requireArguments()).shoe
-        shoe?.let {
-            viewModel.setShoe(shoe)
-        }
 
         viewModel.shoes.observe(requireActivity(), {
             val result = it ?: return@observe
             if (result.size > 0) {
                 binding.noItemLabel.visibility = GONE
-                shoe?.let {
-                    for (shoe in result) {
-                        val shoeView = ShoeContainer(requireContext())
-                        shoeView.loadShoes(shoe)
-                        binding.listContainer.addView(shoeView)
-                    }
+                for (shoe in result) {
+                    val shoeView = ShoeContainer(requireContext().applicationContext)
+                    shoeView.loadShoes(shoe)
+                    binding.listContainer.addView(shoeView)
                 }
             } else {
                 binding.noItemLabel.visibility = VISIBLE

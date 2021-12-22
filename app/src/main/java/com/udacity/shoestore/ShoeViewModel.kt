@@ -18,10 +18,14 @@ class ShoeViewModel : ViewModel() {
     }
 
     fun setShoe(shoe: Shoe) {
-        val tempList = _shoes.value
-        if (tempList != null) {
-            tempList.add(shoe)
-            _shoes.value = tempList
+        try {
+            val tempList = _shoes.value
+            if (tempList != null) {
+                tempList.add(shoe)
+                _shoes.value = tempList
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 }

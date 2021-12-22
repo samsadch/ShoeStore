@@ -29,21 +29,4 @@ class WelcomeFragment : Fragment() {
         setHasOptionsMenu(true)
         return binding.root
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_logout, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.menu_logout -> {
-                findNavController().navigate(R.id.action_welcomeFragment_to_loginFragment)
-                true
-            }
-            else -> {
-                super.onOptionsItemSelected(item)
-            }
-        }
-    }
 }

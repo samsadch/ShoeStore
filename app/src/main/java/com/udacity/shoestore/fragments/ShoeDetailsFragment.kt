@@ -1,13 +1,16 @@
 package com.udacity.shoestore.fragments
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
+import com.udacity.shoestore.ShoeViewModel
 import com.udacity.shoestore.databinding.FragmentShoeDetailsBinding
 import com.udacity.shoestore.models.Shoe
 
@@ -16,6 +19,7 @@ import com.udacity.shoestore.models.Shoe
  * @Date: 21/12/2021
  */
 class ShoeDetailsFragment : Fragment() {
+    lateinit var viewModel: ShoeViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,6 +29,7 @@ class ShoeDetailsFragment : Fragment() {
             inflater,
             R.layout.fragment_shoe_details, container, false
         )
+        viewModel = ViewModelProvider(requireActivity()).get(ShoeViewModel::class.java)
         binding.apply {
             saveButton.setOnClickListener {
                 val shoeName = shoeNameEdt.text.toString()
@@ -38,12 +43,8 @@ class ShoeDetailsFragment : Fragment() {
                         company = shoeCompany,
                         description = description
                     )
-                    requireView().findNavController()
-                        .navigate(
-                            ShoeDetailsFragmentDirections.actionShoeDetailsFragmentToShoeListingFragment(
-                                shoe
-                            )
-                        )
+                    viewModel.setShoe(shoe)
+                    findNavController().popBackStack()
                 } else {
                     Toast.makeText(
                         requireContext(),
@@ -57,24 +58,6 @@ class ShoeDetailsFragment : Fragment() {
                 findNavController().popBackStack()
             }
         }
-        setHasOptionsMenu(true)
         return binding.root
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_logout, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.menu_logout -> {
-                findNavController().navigate(R.id.action_welcomeFragment_to_loginFragment)
-                true
-            }
-            else -> {
-                super.onOptionsItemSelected(item)
-            }
-        }
     }
 }
