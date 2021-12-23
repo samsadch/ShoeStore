@@ -26,23 +26,63 @@ class ShoeViewModel : ViewModel() {
         onCancelPressed(false)
     }
 
-    private fun setShoe(shoe: Shoe) {
-        val tempList = _shoes.value
-        if (tempList != null) {
-            tempList.add(shoe)
-            _shoes.value = tempList
-            onCancelPressed(true)
+    private fun setShoe(shoe: Shoe?) {
+        shoe?.let {
+            val tempList = _shoes.value
+            if (tempList != null) {
+                tempList.add(shoe)
+                _shoes.value = tempList
+                onCancelPressed(true)
+            }
         }
     }
 
-    fun addShoe(shoeName: String, shoeCompany: String, shoeSize: String, description: String) {
+    fun clearShoe(){
+        _currentShoe.value = Shoe("",0.0,"","")
+    }
+
+    fun setShoeName(shoeName: String) {
         val shoe = Shoe(
             name = shoeName,
-            size = shoeSize.toDouble(),
-            company = shoeCompany,
+            size = _currentShoe.value?.size ?: 0.0,
+            company = _currentShoe.value?.company ?: "",
+            description = _currentShoe.value?.description ?: ""
+        )
+        _currentShoe.value = shoe
+    }
+
+    fun setShoeCompany(company: String) {
+        val shoe = Shoe(
+            name = _currentShoe.value?.name ?: "",
+            size = _currentShoe.value?.size ?: 0.0,
+            company = company,
+            description = _currentShoe.value?.description ?: ""
+        )
+        _currentShoe.value = shoe
+    }
+
+    fun setShoeSize(size: Double) {
+        val shoe = Shoe(
+            name = _currentShoe.value?.name ?: "",
+            size = size,
+            company = _currentShoe.value?.company ?: "",
+            description = _currentShoe.value?.description ?: ""
+        )
+        _currentShoe.value = shoe
+    }
+
+    fun setShoeDescription(description: String) {
+        val shoe = Shoe(
+            name = _currentShoe.value?.name ?: "",
+            size = _currentShoe.value?.size ?: 0.0,
+            company = _currentShoe.value?.company ?: "",
             description = description
         )
-        setShoe(shoe)
+        _currentShoe.value = shoe
+    }
+
+    fun addShoe() {
+        setShoe(_currentShoe.value)
     }
 
     fun onCancelPressed(isCancel: Boolean) {
